@@ -280,17 +280,17 @@ async function submitBooking(){
     const meja = parts[1].replace('T','');
     const kerusi = parts[2].replace('S','');
 
-    const params = new URLSearchParams({
-      nama: name,
-      telefon: phone,
-      batch: batch,
-      resit: resit,
-      khemah: khemah,
-      meja: meja,
-      kerusi: kerusi,
-      harga: PRICE,
-      kod_tempahan: bookingCode
-    });
+const params = new URLSearchParams({
+  nama: name,
+  tel: phone,
+  batch: batch,
+  resit: resit,
+  khemah: khemah,
+  meja: meja,
+  kerusi: kerusi,
+  harga: PRICE,
+  kod_tempahan: bookingCode
+});
 
     try{
       const resp = await fetch(WEBAPP_URL + '?' + params.toString(), { method: 'GET' });
