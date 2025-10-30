@@ -230,10 +230,16 @@ $('#adminLogin').onclick=async()=>{
   try{
     const resp=await fetch(WEBAPP_URL+'?action=getAll'); const data=await resp.json();
     if(!Array.isArray(data)||data.length===0)return alert('Tiada tempahan.');
-    const list=data.map(r=>{
-      const tarikh=r[0], kod=r[1], unik=r[2], nama=r[3], resit=r[6];
-      return `${resit} — ${nama} — ${kod} — ${unik} — ${tarikh}`;
-    }).join('\n');
+const list = data.map(r => {
+  const tarikh = r[0] || '';
+  const kodKerusi = r[1] || '';
+  const kodTempahan = r[2] || '';
+  const nama = r[3] || '';
+  const telefon = r[4] || '';
+  const batch = r[5] || '';
+  const resit = r[6] || '';
+  return `${resit} — ${nama} — ${kodKerusi} — ${kodTempahan} — ${tarikh}`;
+}).join('\n');
     $('#adminList').style.display='block'; $('#adminList').textContent='📋 Senarai Resit Digunakan:\n\n'+list;
   }catch(err){alert('Gagal muat data admin: '+err);}
 };
